@@ -72,14 +72,21 @@
                             <span onclick="removeNode(this)">X</span>
                         </div>
                     </li>`
-            const p = `<p class="error">Please Enter yout task</p>`
-            const all = document.getElementById('test')
+            const errorParagraph = document.querySelector('.error');
+          
             if(repeatNode.length > 0){
                 Ul.innerHTML += li;
                 const repeatNode = document.getElementById('addTask').value = '';
+                if(errorParagraph){
+                errorParagraph.remove();
+               }
             }
-            else if(repeatNode.length == 0){
-                all.innerHTML+= p;
+            else{
+                if(!errorParagraph){
+                    const error = `<p class="error">Please Enter yout task</p>`
+                    const all=  document.getElementById('test')
+                    all.innerHTML += error;
+                }
                 // alert("Please Enter Your Task");
             }
         }
