@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <section>
+        <div class="todo-main">
+            <div class="todo-title">
+                <h2>to-do-list</h2>
+                <img src="./Images/icon.png" alt="icon">
+            </div>
+            <div class="todo-input-wrapper" id="test">
+                <input type="text" id="addTask" placeholder="Enter Your Task">
+                <button onclick="addList()">Add</button>
+            </div>
+            <div class="todo-list">
+                <ul id="taskList">
+                    <li class="form-group">
+                        <label class="completedTask" onclick="toggleClass(this)">
+                            <input id="radio1" type="checkbox" onclick="event.stopPropagation()">
+                            Task Added
+                        </label>
+                        <div class="close-btn">
+                            <span onclick="removeNode(this)">X</span>
+                        </div>
+                    </li>
+                    <li class="form-group">
+                        <label class="completedTask" onclick="toggleClass(this)">
+                            <input id="radio2" type="checkbox" onclick="event.stopPropagation()">
+                            Task Added
+                        </label>
+                        <div class="close-btn">
+                            <span onclick="removeNode(this)">X</span>
+                        </div>
+                    </li>
+                    <li class="form-group">
+                        <label class="completedTask" onclick="toggleClass(this)">
+                            <input id="radio3" type="checkbox" onclick="event.stopPropagation()">
+                            Task Added
+                        </label>
+                        <div class="close-btn">
+                            <span onclick="removeNode(this)">X</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <script>
+        function toggleClass(label) {
+            label.classList.toggle('selected');
+        }
+        function removeNode(span) {
+            const li = span.parentElement.parentElement;
+            li.remove();
+        }
+        function addList() {
+            const repeatNode = document.getElementById('addTask').value;
+            const Ul = document.getElementById('taskList')
+            const li = `<li class="form-group">
+                        <label class="completedTask" onclick="toggleClass(this)">
+                            <input id="radio3" type="checkbox" onclick="event.stopPropagation()">
+                            ${repeatNode}
+                        </label>
+                        <div class="close-btn">
+                            <span onclick="removeNode(this)">X</span>
+                        </div>
+                    </li>`
+            const p = `<p class="error">Please Enter yout task</p>`
+            const all = document.getElementById('test')
+            if(repeatNode.length > 0){
+                Ul.innerHTML += li;
+                const repeatNode = document.getElementById('addTask').value = '';
+            }
+            else if(repeatNode.length == 0){
+                all.innerHTML+= p;
+                // alert("Please Enter Your Task");
+            }
+        }
+           
+           
+    </script>
+</body>
+</html>
+
+
